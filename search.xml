@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title></title>
+      <link href="/2019/08/15/201908152000/"/>
+      <url>/2019/08/15/201908152000/</url>
+      
+        <content type="html"><![CDATA[<h2 id="欢迎下载「小号」应用"><a href="#欢迎下载「小号」应用" class="headerlink" title="欢迎下载「小号」应用"></a>欢迎下载「小号」应用</h2><h4 id="小号是一款互联网共享短信查看神器-立即下载👇"><a href="#小号是一款互联网共享短信查看神器-立即下载👇" class="headerlink" title="小号是一款互联网共享短信查看神器 立即下载👇"></a>小号是一款互联网共享短信查看神器 <a href="https://www.pgyer.com/wgyt" target="_blank" rel="noopener">立即下载👇</a></h4> <a id="more"></a><p><img src="https://upload-images.jianshu.io/upload_images/1948083-854a4e3e490439a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/480" alt="xiaohao" title="xiaohao"></p><p>一款收集展示互联网共享短信的应用，收纳的手机号多达上百个，并且不定期更新增加新的平台手机号。</p><blockquote><p>在日常测试工作中，需要大量的测试账号，而互联网上有此类的共享手机号提供公开的短信共享，这样就能满足大量测试号的需求，但目前此类网站比较分散。</p></blockquote><blockquote><p>因此开发了该app用于收集整合互联网此类平台，并统一在该app上展示，应用架构上支持拓展更多的平台，未来将支持更多的短信或手机号操作。</p></blockquote><h4 id="泼冷水"><a href="#泼冷水" class="headerlink" title="泼冷水"></a>泼冷水</h4><p>1.0版本由于设计简陋功能比较单一，上线应用商店被拒了。（确实很简陋单一，😄，所以目前定位学习交流）</p><p>不过这是个人开发的第一款饱含激情与希望的应用，也算是不忘初心吧，从有想法到出成品经历了四五个月总算挤出来了，出1.0版本了。</p><p>有兴趣的同学可以下载体验下，还是比较实用哦，也欢迎一起学习交流提意见，更欢迎有想法小伙伴一起合作开发😝。</p><h4 id="下面时间"><a href="#下面时间" class="headerlink" title="下面时间"></a>下面时间</h4><p>简单欣赏下由开发者设计的丑陋的界面吧</p><p><img src="https://upload-images.jianshu.io/upload_images/1948083-f1dbbec9f963c166.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt="ui"></p><p>欢迎观赏，谢谢！</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>关于React-Native中的StaticRenderer组件</title>
       <link href="/2019/08/15/201908151313/"/>
       <url>/2019/08/15/201908151313/</url>
@@ -47,9 +60,9 @@
       
         <tags>
             
-            <tag> Android </tag>
-            
             <tag> WebView </tag>
+            
+            <tag> Android </tag>
             
         </tags>
       
@@ -99,7 +112,7 @@
       
         <tags>
             
-            <tag> android </tag>
+            <tag> Android </tag>
             
         </tags>
       
