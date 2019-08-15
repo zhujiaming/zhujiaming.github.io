@@ -5,9 +5,9 @@
   <subtitle>这里什么都没有...</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="http://zhujm.top/"/>
   <updated>2019-08-15T02:40:29.017Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>http://zhujm.top/</id>
   
   <author>
     <name>jiaming.zhu</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>AndriodStudio打开项目长时间无响应解决</title>
-    <link href="http://yoursite.com/2019/08/15/201908151038/"/>
-    <id>http://yoursite.com/2019/08/15/201908151038/</id>
+    <link href="http://zhujm.top/2019/08/15/201908151038/"/>
+    <id>http://zhujm.top/2019/08/15/201908151038/</id>
     <published>2019-08-15T02:38:22.214Z</published>
     <updated>2019-08-15T02:40:29.017Z</updated>
     
@@ -34,19 +34,19 @@
     
     </summary>
     
-      <category term="devTools" scheme="http://yoursite.com/categories/devTools/"/>
+      <category term="devTools" scheme="http://zhujm.top/categories/devTools/"/>
     
     
-      <category term="android studio" scheme="http://yoursite.com/tags/android-studio/"/>
+      <category term="android studio" scheme="http://zhujm.top/tags/android-studio/"/>
     
-      <category term="gradle" scheme="http://yoursite.com/tags/gradle/"/>
+      <category term="gradle" scheme="http://zhujm.top/tags/gradle/"/>
     
   </entry>
   
   <entry>
     <title>简单破解一款安卓软件</title>
-    <link href="http://yoursite.com/2019/08/15/201908151029/"/>
-    <id>http://yoursite.com/2019/08/15/201908151029/</id>
+    <link href="http://zhujm.top/2019/08/15/201908151029/"/>
+    <id>http://zhujm.top/2019/08/15/201908151029/</id>
     <published>2019-08-15T01:44:39.386Z</published>
     <updated>2019-08-15T02:57:42.404Z</updated>
     
@@ -58,19 +58,19 @@
     
     </summary>
     
-      <category term="android" scheme="http://yoursite.com/categories/android/"/>
+      <category term="android" scheme="http://zhujm.top/categories/android/"/>
     
     
-      <category term="android" scheme="http://yoursite.com/tags/android/"/>
+      <category term="android" scheme="http://zhujm.top/tags/android/"/>
     
-      <category term="逆向" scheme="http://yoursite.com/tags/%E9%80%86%E5%90%91/"/>
+      <category term="逆向" scheme="http://zhujm.top/tags/%E9%80%86%E5%90%91/"/>
     
   </entry>
   
   <entry>
     <title>探究WebView getContentHeight的内部实现看看是否需要进行额外计算</title>
-    <link href="http://yoursite.com/2019/08/15/201908150947/"/>
-    <id>http://yoursite.com/2019/08/15/201908150947/</id>
+    <link href="http://zhujm.top/2019/08/15/201908150947/"/>
+    <id>http://zhujm.top/2019/08/15/201908150947/</id>
     <published>2019-08-15T01:40:51.179Z</published>
     <updated>2019-08-15T02:37:54.759Z</updated>
     
@@ -85,19 +85,19 @@
     
     </summary>
     
-      <category term="android" scheme="http://yoursite.com/categories/android/"/>
+      <category term="android" scheme="http://zhujm.top/categories/android/"/>
     
     
-      <category term="android" scheme="http://yoursite.com/tags/android/"/>
+      <category term="android" scheme="http://zhujm.top/tags/android/"/>
     
-      <category term="webview" scheme="http://yoursite.com/tags/webview/"/>
+      <category term="webview" scheme="http://zhujm.top/tags/webview/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="http://yoursite.com/2019/08/12/hello-world/"/>
-    <id>http://yoursite.com/2019/08/12/hello-world/</id>
+    <link href="http://zhujm.top/2019/08/12/hello-world/"/>
+    <id>http://zhujm.top/2019/08/12/hello-world/</id>
     <published>2019-08-12T06:39:41.185Z</published>
     <updated>2019-08-15T02:41:10.539Z</updated>
     
