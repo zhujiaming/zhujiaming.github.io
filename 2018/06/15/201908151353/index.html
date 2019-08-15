@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>关于Android设备已连接wifi密码的获取密码方式 | jiaming</title>
+  <meta name="description" content="这里什么都没有...">
+  <meta name="keywords" content>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="/">
+  <link rel="alternate" href="/atom.xml" title="jiaming">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Android系统本身目前并不支持直接显示当前已连接wifi密码，">
+<meta name="keywords" content="Android,WiFi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于Android设备已连接wifi密码的获取密码方式">
+<meta property="og:url" content="http://zhujm.top/2018/06/15/201908151353/index.html">
+<meta property="og:site_name" content="jiaming">
+<meta property="og:description" content="Android系统本身目前并不支持直接显示当前已连接wifi密码，">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1948083-90dfe95463b0efff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1948083-dd192a0722fdcfad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1948083-db57cc1a895141cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-08-15T05:56:20.280Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于Android设备已连接wifi密码的获取密码方式">
+<meta name="twitter:description" content="Android系统本身目前并不支持直接显示当前已连接wifi密码，">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1948083-90dfe95463b0efff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+    
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+  <link href="//cdn.bootcss.com/node-waves/0.7.5/waves.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+</head>
+</html>
+<body>
+  <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+
+
+  <script>setLoadingBarProgress(20)</script> 
+  <header class="l_header">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+			<a class="logo flat-box" href='/' >
+				jiaming
+			</a>
+			<div class='menu'>
+				<ul class='h-list'>
+					
+						<li>
+							<a class='flat-box nav-主页' href='/'>
+								主页
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-归档' href='/archives'>
+								归档
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-gallery' href='https://github.com/zhujiaming'>
+								GitHub
+							</a>
+						</li>
+					
+				</ul>
+				<div class='underline'></div>
+			</div>
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<span class="icon icon-search"></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a href='javascript:void(0)'><span class="icon icon-search flat-box"></span></a></li>
+				
+				<li class='s-menu'><a href='javascript:void(0)'><span class="icon icon-menu flat-box"></span></a></li>
+			</ul>
+		</div>
+		
+		<div class='nav-sub container container--flex'>
+			<a class="logo" class="flat-box" href='javascript:void(0)'>
+				Word of Forks
+			</a>
+
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a href='javascript:void(0)'><span class="icon icon-chat_bubble_outline flat-box"></span></a></li>
+				<li class='s-top'><a href='javascript:void(0)'><span class="icon icon-arrow_upward flat-box"></span></a></li>
+				<li class='s-toc'><a href='javascript:void(0)'><span class="icon icon-format_list_numbered flat-box"></span></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+<aside class="menu-phone">
+	<nav>
+		
+			<a href="/" class="nav-主页 nav">
+				主页
+			</a>
+		
+			<a href="/archives" class="nav-归档 nav">
+				归档
+			</a>
+		
+			<a href="https://github.com/zhujiaming" class="nav-gallery nav">
+				GitHub
+			</a>
+		
+	</nav>
+</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+  <div class="l_body">
+    <div class='container clearfix'>
+      <div class='l_main'>
+        <article id="post-201908151353"
+  class="post white-box article-type-post"
+  itemscope itemprop="blogPost">
+	<section class='meta'>
+	<h2 class="title">
+  	<a href="/2018/06/15/201908151353/">
+    	关于Android设备已连接wifi密码的获取密码方式
+    </a>
+  </h2>
+	<time>
+	  6月 15, 2018
+	</time>
+	
+	</section>
+	
+		<section class="toc-wrapper"><ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#root方式"><span class="toc-number">1.</span> <span class="toc-text">root方式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#非root方式"><span class="toc-number">2.</span> <span class="toc-text">非root方式</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#更多方式希望有大神能补充补充。"><span class="toc-number">2.1.</span> <span class="toc-text">更多方式希望有大神能补充补充。</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#参考："><span class="toc-number">2.2.</span> <span class="toc-text">参考：</span></a></li></ol></li></ol></section>
+	
+	<section class="article typo">
+  	<div class="article-entry" itemprop="articleBody">
+    	<blockquote>
+<p>Android系统本身目前并不支持直接显示当前已连接wifi密码，<a id="more"></a>当Android设备连接wifi成功后，想要和他人分享wifi几乎是不大可能,（当然，我目前了解的如果是小米手机，直接可以通过wifi二维码信息获取到密码），下面记录两种简单的获取普通android设备已连接wifi密码的方式。</p>
+</blockquote>
+<p>大致有两种方式可以获取到当前设备wifi的详细信息,分为root方式与非root方式</p>
+<hr>
+<h5 id="root方式"><a href="#root方式" class="headerlink" title="root方式"></a>root方式</h5><p>安卓手机的ROOT：即为获取最高的权限，就跟电脑获取超级管理员一样的!因为厂家怕你不懂手机系统就设置了这样一个权限。你的手机没ROOT之前，你是以一个使用者的身份在用这个手机。你只能被动的使用里面的一些功能，或者在不影响系统全局的情况下安装一些新的程序。</p>
+<ul>
+<li><p>准备一台已root的android设备<br>通过软件root当前设备，获取管理员最高权限，可通过市面上一些手机root软件来操作，如root大师，360一键root等。</p>
+</li>
+<li><p>查看android设备是否已获取root权限<br>在安卓手机中下载安装<a href="http://shouji.baidu.com/software/10047789.html" target="_blank" rel="noopener">RE文件管理器</a>（该软件在之后也会用到），下载后打开，如下图：<br><img src="http://upload-images.jianshu.io/upload_images/1948083-90dfe95463b0efff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="进入根目录"></p>
+</li>
+</ul>
+<p>在箭头所指的地方，显示为已挂载为可读写，即为已root状态，当前文件夹下所有文件为可读写。</p>
+<ul>
+<li><p>进入指定文件夹下<br>在根目录下进入 /data/misc/wifi/ 目录下找到文件wpa_supplicant.conf：<br><img src="http://upload-images.jianshu.io/upload_images/1948083-dd192a0722fdcfad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="找到文件"></p>
+</li>
+<li><p>以文本方式打开该文件<br>打开后内容如图：<br><img src="http://upload-images.jianshu.io/upload_images/1948083-db57cc1a895141cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="wpa_supplicant.conf"><br>其中，箭头所指ssid与psk分别为已连接过的wifi的名称与密码了。</p>
+</li>
+</ul>
+<p>当然，在已获取root权限的手机上下载wifi信息查看类的apk软件也是可以查看密码的，如 <a href="http://p.gdown.baidu.com/69779bc851be62657bedfd6f4d7ebcc7e51e57510566c2c0c1068368f911dec32417c03f33a1d061ba02af9e3b225894e66a5e0a9324a271de8c036faf59fc15141cf0cf4368df6124f4762d38c364a81c2ce6c5ae3c168f54d07a0b96969fd0cd16fc87605a0b92a0c7c0d672bc664ca833f9566b72fb857ab8dd9a282c952a9d8f69291650a553bf757097a8fe5d90be654419b5f7ceef7e18099ccd010a0d" target="_blank" rel="noopener">WIFI密码查看器</a>。</p>
+<hr>
+<h5 id="非root方式"><a href="#非root方式" class="headerlink" title="非root方式"></a>非root方式</h5><ul>
+<li>非root方式应用到android系统的备份功能，将wifi信息备份到sd卡的可读写目录中，打开相应文件如类似backup命名的文件夹中的相应文件便可查看密码。但是某些由于国产手机对安卓系统改造太大，部分国产品牌手机未对用户提供备份功能，或者备份数据进行了加密，无法查看，因此，该方法仅适用于部分手机。<br>亲测目前只有少部分手机可采用这样的方式。<br>具体方式<a href="http://jingyan.baidu.com/album/e75aca857b3e60142edac607.html?picindex=3" target="_blank" rel="noopener">百度经验</a>上有介绍。</li>
+<li>万能钥匙方式，该方式估计大多数人都知道，采用了热点连接分享与简单密码暴力破解的方式，热点连接分享估计就是采用万能钥匙自己的app进行wifi连接时，万能钥匙就能获取到wifi信息以及当前地点信息，再备份到网络服务器，分享给当前地点其他人；而暴力破解都知道是用数据字典中的数据一个个作为密码登录wifi，直到成功。</li>
+<li>当然，也可以使用小米手机，wifi密码获取起来相对更容易。</li>
+</ul>
+<hr>
+<h6 id="更多方式希望有大神能补充补充。"><a href="#更多方式希望有大神能补充补充。" class="headerlink" title="更多方式希望有大神能补充补充。"></a>更多方式希望有大神能补充补充。</h6><h6 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h6><ul>
+<li>百度文库</li>
+</ul>
+
+  	</div>
+	  
+	  <div class="article-tags tags">
+      
+        <a href="/tags/Android/">Android</a>
+      
+        <a href="/tags/WiFi/">WiFi</a>
+      
+	  </div>
+    
+		
+	
+		<div class="art-item-footer">
+				
+					<span class="art-item-left"><i class="icon icon-chevron-thin-left"></i>prev：<a href="/2018/08/15/201908151322/" rel="prev"  title="A custom clock view .">
+						A custom clock view . 
+					</a></span>
+				
+				
+					<span class="art-item-right">next：<a href="/2018/06/15/201908151319/" rel="next"  title="mac 上AndroidStudio命令行gradlew执行出错">
+						mac 上AndroidStudio命令行gradlew执行出错
+					</a><i class="icon icon-chevron-thin-right"></i></span>
+				
+		</div>
+	
+	</section>
+	
+</article>
+<script>
+	window.subData = {
+		title: '关于Android设备已连接wifi密码的获取密码方式',
+		tools: true
+	}
+</script>
+
+      </div>
+      <aside class='l_side'>
+        
+  <section class='m_widget about'>
+
+<img class='avatar waves-image' src='/images/avatar.png' />
+
+<div class='header'>jiaming.zhu</div>
+<div class='content'>
+<div class='desc'>Life is the art of drawing without an eraser.</div>
+</div>
+</section>
+
+  <section class='m_widget links'>
+<div class='header'>Links</div>
+<div class='content'>
+    <ul class="entry">
+    
+        <li><a class="flat-box" target="_blank" href="https://www.baidu.com">
+            <div class='name'>Baidu</div>
+        </a></li>
+    
+    </ul>
+</div>
+</section>
+
+  <section class='m_widget categories'>
+<div class='header'>Categories</div>
+<div class='content'>
+    
+    <ul class="entry">
+    
+        <li><a class="flat-box" href="/categories/devTools/"><div class='name'>devTools</div><div class='badget'>1</div></a></li>
+    
+        <li><a class="flat-box" href="/categories/个人项目/"><div class='name'>个人项目</div><div class='badget'>2</div></a></li>
+    
+        <li><a class="flat-box" href="/categories/技术/"><div class='name'>技术</div><div class='badget'>5</div></a></li>
+    
+        <li><a class="flat-box" href="/categories/问题与解决/"><div class='name'>问题与解决</div><div class='badget'>1</div></a></li>
+    
+        <li><a class="flat-box" href="/categories/阅读/"><div class='name'>阅读</div><div class='badget'>1</div></a></li>
+    
+    </ul>
+    
+</div>
+</section>
+
+  
+<div class="m_widget tagcloud">
+    <div class="header">Tags</div>
+    <div class='content'>
+        <a href="/tags/Android/" style="font-size: 20px; color: #000">Android</a> <a href="/tags/AndroidStudio/" style="font-size: 16px; color: #555">AndroidStudio</a> <a href="/tags/Gradle/" style="font-size: 16px; color: #555">Gradle</a> <a href="/tags/JavaScript/" style="font-size: 14px; color: #808080">JavaScript</a> <a href="/tags/Mac/" style="font-size: 14px; color: #808080">Mac</a> <a href="/tags/Note/" style="font-size: 14px; color: #808080">Note</a> <a href="/tags/ReactNative/" style="font-size: 18px; color: #2b2b2b">ReactNative</a> <a href="/tags/WebView/" style="font-size: 14px; color: #808080">WebView</a> <a href="/tags/WiFi/" style="font-size: 14px; color: #808080">WiFi</a> <a href="/tags/android/" style="font-size: 14px; color: #808080">android</a> <a href="/tags/性能优化/" style="font-size: 14px; color: #808080">性能优化</a> <a href="/tags/逆向/" style="font-size: 14px; color: #808080">逆向</a>
+    </div>
+</div>
+
+
+
+      </aside>
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+  </div>
+  <footer id="footer" class="clearfix">
+
+	<div class="social-wrapper">
+  	
+      
+        <a href="https://github.com/zhujiaming" class="social github"
+          target="_blank" rel="external">
+          <span class="icon icon-github"></span>
+        </a>
+      
+    
+  </div>
+  
+  <div>Theme <a href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow</a> designed by <a href="http://keyin.me/" target="_blank">Kevin Tan</a>.</div>
+  
+</footer>
+
+
+  <script>setLoadingBarProgress(80);</script>
+  
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src='//cdn.bootcss.com/node-waves/0.7.5/waves.min.js'></script>
+<script src="//cdn.bootcss.com/scrollReveal.js/3.3.2/scrollreveal.min.js"></script>
+<script src="/js/jquery.fitvids.js"></script>
+<script>
+	var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+	var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+	var ALGOLIA_API_KEY = "";
+	var ALGOLIA_APP_ID = "";
+	var ALGOLIA_INDEX_NAME = "";
+  var AZURE_SERVICE_NAME = "";
+  var AZURE_INDEX_NAME = "";
+  var AZURE_QUERY_KEY = "";
+  var BAIDU_API_ID = "";
+  var SEARCH_SERVICE = "hexo";
+  var ROOT = "/"||"/";
+  if(!ROOT.endsWith('/'))ROOT += '/';
+</script>
+<script src="/js/search.js"></script>
+<script src="/js/app.js"></script>
+
+
+  <script>setLoadingBarProgress(100);</script>
+</body>
+</html>

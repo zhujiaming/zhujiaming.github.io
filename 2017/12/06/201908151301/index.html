@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>浅析React-Native WebView,实现RN代码与Html的简单交互 | jiaming</title>
+  <meta name="description" content="这里什么都没有...">
+  <meta name="keywords" content>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="/">
+  <link rel="alternate" href="/atom.xml" title="jiaming">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言 基于React-Native0.41及0.25两个版本来分析">
+<meta name="keywords" content="Android,ReactNative">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅析React-Native WebView,实现RN代码与Html的简单交互">
+<meta property="og:url" content="http://zhujm.top/2017/12/06/201908151301/index.html">
+<meta property="og:site_name" content="jiaming">
+<meta property="og:description" content="前言 基于React-Native0.41及0.25两个版本来分析">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1948083-2fb41e3502b87af3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1948083-b60f3c9be5dc4eb4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-08-15T05:17:21.356Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浅析React-Native WebView,实现RN代码与Html的简单交互">
+<meta name="twitter:description" content="前言 基于React-Native0.41及0.25两个版本来分析">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1948083-2fb41e3502b87af3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+    
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+  <link href="//cdn.bootcss.com/node-waves/0.7.5/waves.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+</head>
+</html>
+<body>
+  <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+
+
+  <script>setLoadingBarProgress(20)</script> 
+  <header class="l_header">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+			<a class="logo flat-box" href='/' >
+				jiaming
+			</a>
+			<div class='menu'>
+				<ul class='h-list'>
+					
+						<li>
+							<a class='flat-box nav-主页' href='/'>
+								主页
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-归档' href='/archives'>
+								归档
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-gallery' href='https://github.com/zhujiaming'>
+								GitHub
+							</a>
+						</li>
+					
+				</ul>
+				<div class='underline'></div>
+			</div>
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<span class="icon icon-search"></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a href='javascript:void(0)'><span class="icon icon-search flat-box"></span></a></li>
+				
+				<li class='s-menu'><a href='javascript:void(0)'><span class="icon icon-menu flat-box"></span></a></li>
+			</ul>
+		</div>
+		
+		<div class='nav-sub container container--flex'>
+			<a class="logo" class="flat-box" href='javascript:void(0)'>
+				Word of Forks
+			</a>
+
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a href='javascript:void(0)'><span class="icon icon-chat_bubble_outline flat-box"></span></a></li>
+				<li class='s-top'><a href='javascript:void(0)'><span class="icon icon-arrow_upward flat-box"></span></a></li>
+				<li class='s-toc'><a href='javascript:void(0)'><span class="icon icon-format_list_numbered flat-box"></span></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+<aside class="menu-phone">
+	<nav>
+		
+			<a href="/" class="nav-主页 nav">
+				主页
+			</a>
+		
+			<a href="/archives" class="nav-归档 nav">
+				归档
+			</a>
+		
+			<a href="https://github.com/zhujiaming" class="nav-gallery nav">
+				GitHub
+			</a>
+		
+	</nav>
+</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+  <div class="l_body">
+    <div class='container clearfix'>
+      <div class='l_main'>
+        <article id="post-201908151301"
+  class="post white-box article-type-post"
+  itemscope itemprop="blogPost">
+	<section class='meta'>
+	<h2 class="title">
+  	<a href="/2017/12/06/201908151301/">
+    	浅析React-Native WebView,实现RN代码与Html的简单交互
+    </a>
+  </h2>
+	<time>
+	  12月 6, 2017
+	</time>
+	
+    
+    <div class='cats'>
+        <a href="/categories/技术/">技术</a>
+    </div>
+
+	</section>
+	
+		<section class="toc-wrapper"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#以下内容包括："><span class="toc-number">1.0.1.</span> <span class="toc-text">以下内容包括：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#React-Native-WebView"><span class="toc-number">2.</span> <span class="toc-text">React-Native WebView</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#WebView"><span class="toc-number">3.</span> <span class="toc-text">WebView</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#webView"><span class="toc-number">3.1.</span> <span class="toc-text">{webView}</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#otherView"><span class="toc-number">3.2.</span> <span class="toc-text">{otherView}</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#其他属性"><span class="toc-number">3.3.</span> <span class="toc-text">其他属性</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#webview-实现与RN代码简单交互"><span class="toc-number">4.</span> <span class="toc-text">webview 实现与RN代码简单交互</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#使用高低版本都有的属性方法–onNavigationStateChange"><span class="toc-number">4.0.1.</span> <span class="toc-text">使用高低版本都有的属性方法–onNavigationStateChange</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#使用高版本的属性方法–onMessage-event"><span class="toc-number">4.0.2.</span> <span class="toc-text">使用高版本的属性方法–onMessage(event)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#WebView-Javascript-Bridge"><span class="toc-number">4.0.3.</span> <span class="toc-text">WebView Javascript Bridge</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#在Android原生代码中对ReactNative-WebView控件进行初始设置"><span class="toc-number">5.</span> <span class="toc-text">在Android原生代码中对ReactNative WebView控件进行初始设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#结束"><span class="toc-number">6.</span> <span class="toc-text">结束</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参考："><span class="toc-number">7.</span> <span class="toc-text">参考：</span></a></li></ol></section>
+	
+	<section class="article typo">
+  	<div class="article-entry" itemprop="articleBody">
+    	<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><blockquote>
+<p>基于React-Native0.41及0.25两个版本来分析</p>
+</blockquote>
+<a id="more"></a>
+<blockquote>
+<p>公司项目基于ReactNative开发，最近有个需求为嵌入Web页面至应用中，分析需求发现技术实现中涉及了Web页面与app代码之间的交互，这对于原生来说实现并不难，但对于接触不久的RN来说，实现起来有点难度。下面结合React-Native WebView API来分析WebView的使用及简单的交互。</p>
+</blockquote>
+<h6 id="以下内容包括："><a href="#以下内容包括：" class="headerlink" title="以下内容包括："></a>以下内容包括：</h6><ul>
+<li>React-Native WebView API 属性介绍</li>
+<li>webview 实现与RN代码简单交互</li>
+<li>在Android原生代码中对ReactNative WebView控件进行初始设置</li>
+</ul>
+<h4 id="React-Native-WebView"><a href="#React-Native-WebView" class="headerlink" title="React-Native WebView"></a>React-Native WebView</h4><p>首先结合React-Native 高版本与低版本（0.41.2 与 0.25.1）分析其RN源码（偏向于Android方向）及api</p>
+<h4 id="WebView"><a href="#WebView" class="headerlink" title="WebView"></a>WebView</h4><p>WebView 作为一个RN组件也是有其生命周期方法，翻开源码，查看其render方法，其return返回值如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">return (</span><br><span class="line">   &lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">     &#123;webView&#125;</span><br><span class="line">     &#123;otherView&#125;</span><br><span class="line">   &lt;/View&gt;</span><br><span class="line"> );</span><br></pre></td></tr></table></figure>
+
+<p>从此处可以看出，WebView只是一层壳，其包括了两层覆盖的View，其中{webView}为RCTWebView组件，映射原生RCTWebView组件，是真正加载web页面的组件，{otherView}分析其构造可以发现它主要用来渲染加载失败视图及加载中的提示视图。</p>
+<h5 id="webView"><a href="#webView" class="headerlink" title="{webView}"></a>{webView}</h5><p>render中定义webView变量的代码如下(高版本低版本部分属性有所出入)：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">var webView =</span><br><span class="line">  &lt;RCTWebView</span><br><span class="line">    ref=&#123;RCT_WEBVIEW_REF&#125;</span><br><span class="line">    key=&quot;webViewKey&quot;</span><br><span class="line">    style=&#123;webViewStyles&#125;</span><br><span class="line">    source=&#123;resolveAssetSource(source)&#125;</span><br><span class="line">    scalesPageToFit=&#123;this.props.scalesPageToFit&#125;</span><br><span class="line">    injectedJavaScript=&#123;this.props.injectedJavaScript&#125;</span><br><span class="line">    userAgent=&#123;this.props.userAgent&#125;</span><br><span class="line">    javaScriptEnabled=&#123;this.props.javaScriptEnabled&#125;</span><br><span class="line">    domStorageEnabled=&#123;this.props.domStorageEnabled&#125;</span><br><span class="line">    messagingEnabled=&#123;typeof this.props.onMessage === &apos;function&apos;&#125;</span><br><span class="line">    onMessage=&#123;this.onMessage&#125;</span><br><span class="line">    contentInset=&#123;this.props.contentInset&#125;</span><br><span class="line">    automaticallyAdjustContentInsets=&#123;this.props.automaticallyAdjustContentInsets&#125;</span><br><span class="line">    onContentSizeChange=&#123;this.props.onContentSizeChange&#125;</span><br><span class="line">    onLoadingStart=&#123;this.onLoadingStart&#125;</span><br><span class="line">    onLoadingFinish=&#123;this.onLoadingFinish&#125;</span><br><span class="line">    onLoadingError=&#123;this.onLoadingError&#125;</span><br><span class="line">    testID=&#123;this.props.testID&#125;</span><br><span class="line">    mediaPlaybackRequiresUserAction=&#123;this.props.mediaPlaybackRequiresUserAction&#125;</span><br><span class="line">    allowUniversalAccessFromFileURLs=&#123;this.props.allowUniversalAccessFromFileURLs&#125;</span><br><span class="line">  /&gt;;</span><br></pre></td></tr></table></figure>
+
+<p><rctwebview> 所设置的属性在webView Api几乎都有介绍，但部分属性却没有说明，大概分析下：</rctwebview></p>
+<ul>
+<li>scalesPageToFit bool </li>
+</ul>
+<p>其对应Android端桥接方法为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@ReactProp(name = &quot;scalesPageToFit&quot;)</span><br><span class="line"> public void setScalesPageToFit(WebView view, boolean enabled) &#123;</span><br><span class="line">   view.getSettings().setUseWideViewPort(!enabled);//android原生WebView设置此属性,可任意比例缩放</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>由此可知，设置是否要把网页缩放到适应视图的大小，以及是否允许用户改变缩放比例。RN实现中其值默认设置为true。</p>
+<ul>
+<li>injectedJavaScript</li>
+</ul>
+<p>设置在网页加载之前注入的一段JS代码。</p>
+<ul>
+<li>userAgent</li>
+</ul>
+<p>其对应Android端桥接方法为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@ReactProp(name = &quot;userAgent&quot;)</span><br><span class="line">public void setUserAgent(WebView view, @Nullable String userAgent) &#123;</span><br><span class="line">  if (userAgent != null) &#123;</span><br><span class="line">    // TODO(8496850): Fix incorrect behavior when property is unset (uA == null)</span><br><span class="line">    view.getSettings().setUserAgentString(userAgent);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>RN源码注释：</p>
+<blockquote>
+<p>Sets the user-agent for this WebView. The user-agent can also be set in native using WebViewConfig. This prop will overwrite that config.</p>
+</blockquote>
+<p>综合上面信息，可知该属性为设置浏览器标识，也可通过原生接口WebViewConfig实现定制WebView,下面会稍作详细介绍如何使用WebViewConfig。</p>
+<ul>
+<li>domStorageEnabled</li>
+</ul>
+<p>其对应Android端桥接方法为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@ReactProp(name = &quot;domStorageEnabled&quot;)</span><br><span class="line">public void setDomStorageEnabled(WebView view, boolean enabled) &#123;</span><br><span class="line">  view.getSettings().setDomStorageEnabled(enabled);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>该属性定义指定是否开启DOM本地存储。（仅限Android平台），具体可参考：<br><a href="http://blog.csdn.net/a345017062/article/details/8703221" target="_blank" rel="noopener">http://blog.csdn.net/a345017062/article/details/8703221</a></p>
+<ul>
+<li>messagingEnabled bool</li>
+<li>onMessage</li>
+</ul>
+<p>这两个属性支持高版本ReactNative Api 低版本无此属性。<br>messagingEnabled参数控制onMessage函数是否有效，如果不主动设置，则该值为onMessage函数是否定义的结果为值。</p>
+<p>onMessage为function类型，官方api解释为:</p>
+<blockquote>
+<p>在webview内部的网页中调用window.postMessage方法时可以触发此属性对应的函数，从而实现网页和RN之间的数据交换。 设置此属性的同时会在webview中注入一个postMessage的全局函数并覆盖可能已经存在的同名实现。网页端的window.postMessage只发送一个参数data，此参数封装在RN端的event对象中，即event.nativeEvent.data。data 只能是一个字符串。</p>
+</blockquote>
+<p>Android原生中实现为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">  @ReactProp(name = &quot;messagingEnabled&quot;)</span><br><span class="line">  public void setMessagingEnabled(WebView view, boolean enabled) &#123;</span><br><span class="line">    ((ReactWebView) view).setMessagingEnabled(enabled);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">public void setMessagingEnabled(boolean enabled) &#123;</span><br><span class="line">  if (messagingEnabled == enabled) &#123;</span><br><span class="line">    return;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  messagingEnabled = enabled;</span><br><span class="line">  if (enabled) &#123;</span><br><span class="line">    addJavascriptInterface(new ReactWebViewBridge(this), BRIDGE_NAME);</span><br><span class="line">    linkBridge();</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    removeJavascriptInterface(BRIDGE_NAME);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public void linkBridge() &#123;</span><br><span class="line">  if (messagingEnabled) &#123;</span><br><span class="line">    if (ReactBuildConfig.DEBUG &amp;&amp; Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.KITKAT) &#123;</span><br><span class="line">      // See isNative in lodash</span><br><span class="line">      String testPostMessageNative = &quot;String(window.postMessage) === String(Object.hasOwnProperty).replace(&apos;hasOwnProperty&apos;, &apos;postMessage&apos;)&quot;;</span><br><span class="line">      evaluateJavascript(testPostMessageNative, new ValueCallback&lt;String&gt;() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void onReceiveValue(String value) &#123;</span><br><span class="line">          if (value.equals(&quot;true&quot;)) &#123;</span><br><span class="line">            FLog.w(ReactConstants.TAG, &quot;Setting onMessage on a WebView overrides existing values of window.postMessage, but a previous value was defined&quot;);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    loadUrl(&quot;javascript:(&quot; +</span><br><span class="line">      &quot;window.originalPostMessage = window.postMessage,&quot; +</span><br><span class="line">      &quot;window.postMessage = function(data) &#123;&quot; +</span><br><span class="line">        BRIDGE_NAME + &quot;.postMessage(String(data));&quot; +</span><br><span class="line">      &quot;&#125;&quot; +</span><br><span class="line">    &quot;)&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>原生中实现是调用webView的loadUrl()，执行一段js代码，实现代码的注入。</p>
+<p>定义该函数，即可实现网页端与RN代码之间的数据交互，下面详细介绍。</p>
+<ul>
+<li>onContentSizeChange func</li>
+</ul>
+<p>该函数在Rn api上并未提及，且在低版本rn上并没有<br>其对应Android端桥接方法为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@ReactProp(name = &quot;onContentSizeChange&quot;)</span><br><span class="line">public void setOnContentSizeChange(WebView view, boolean sendContentSizeChangeEvents) &#123;</span><br><span class="line">  if (sendContentSizeChangeEvents) &#123;</span><br><span class="line">    view.setPictureListener(getPictureListener());</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    view.setPictureListener(null);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结合Android Api可知，该函数用途为定义网页中图片加载完毕的状态回调。<br>这个方法已经被Android标为弃用,这个对应的picture并不包含复合层或可以滚动的Div,只能被使用来侦测WebView内容的变化.在以后的版本会提供他的替代事件,所以该属性可不用。</p>
+<p>其他属性可参看RN源码解释与官方Api。</p>
+<h5 id="otherView"><a href="#otherView" class="headerlink" title="{otherView}"></a>{otherView}</h5><p>在render中，otherView是这么赋值的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> var otherView = null;</span><br><span class="line"></span><br><span class="line">if (this.state.viewState === WebViewState.LOADING) &#123;</span><br><span class="line">   otherView = (this.props.renderLoading || defaultRenderLoading)();</span><br><span class="line"> &#125; else if (this.state.viewState === WebViewState.ERROR) &#123;</span><br><span class="line">   var errorEvent = this.state.lastErrorEvent;</span><br><span class="line">   otherView = this.props.renderError &amp;&amp; this.props.renderError(</span><br><span class="line">     errorEvent.domain,</span><br><span class="line">     errorEvent.code,</span><br><span class="line">     errorEvent.description);</span><br><span class="line"> &#125; else if (this.state.viewState !== WebViewState.IDLE) &#123;</span><br><span class="line">   console.error(&apos;RCTWebView invalid state encountered: &apos; + this.state.loading);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>可直观看出，otherView根据WebView不同状态绘制提示页的。</p>
+<ul>
+<li>renderLoading func</li>
+</ul>
+<p>绘制加载中提示页</p>
+<ul>
+<li>renderError func</li>
+</ul>
+<p>绘制加载错误提示页</p>
+<h5 id="其他属性"><a href="#其他属性" class="headerlink" title="其他属性"></a>其他属性</h5><ul>
+<li>onNavigationStateChange func</li>
+</ul>
+<p>源码注释如下:</p>
+<blockquote>
+<p> We return an event with a bunch of fields including:<br>   url, title, loading, canGoBack, canGoForward</p>
+</blockquote>
+<p>具体为重写该函数可在webView状态发生改变的时候回调webView的event信息,event信息里包含了url, title, loading, canGoBack, canGoForward.</p>
+<ul>
+<li>startInLoadingState bool</li>
+</ul>
+<p>源码中的注释：</p>
+<blockquote>
+<p>force WebView to show loadingView on first load</p>
+</blockquote>
+<p>具体为设置第一次加载数据时是否显示loading状态视图，默认值为true.</p>
+<h4 id="webview-实现与RN代码简单交互"><a href="#webview-实现与RN代码简单交互" class="headerlink" title="webview 实现与RN代码简单交互"></a>webview 实现与RN代码简单交互</h4><p>不管安卓还是ios App,当内嵌webView加载网页时，多少都会有涉及网页端代码与原生代码之间的交互。</p>
+<p>比如对原生代码返回键的监听，来实现对当网页可返回时点击app返回键不关闭网页，而是打开前一个网页，当没有前一个网页时，关闭当前webView页面，返回App上个页面。</p>
+<p>这里涉及了app端与原生代码之间的简单交互,下面来说说我是怎么简单在高版本，低版本上实现的。</p>
+<h6 id="使用高低版本都有的属性方法–onNavigationStateChange"><a href="#使用高低版本都有的属性方法–onNavigationStateChange" class="headerlink" title="使用高低版本都有的属性方法–onNavigationStateChange"></a>使用高低版本都有的属性方法–onNavigationStateChange</h6><p>这个函数上面介绍过，重写该回调时会传入一个event参数，event封装了url, title, loading, canGoBack, canGoForward五个方法。且每次webView状态改变时会回调该函数，很简单，通过url来判断。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">onNavigationStateChange=&#123;<span class="keyword">this</span>.onNavigationStateChange&#125;<span class="comment">//在WebView中注册该回调方法</span></span><br><span class="line"></span><br><span class="line">onNavigationStateChange(event)&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'onNavigationStateChange:'</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(event); <span class="comment">//打印出event中属性</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>event的打印结果如下图：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1948083-2fb41e3502b87af3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="event对象属性"></p>
+<p>这里便可直观的获取到WebView的重要状态属性，url为点击html<a>标签触发的超链接，这里自定义成app能判断的协议链接，即可实现简单交互，举例点击网页按钮退出webView，即可用该方法实现。<br>其他值如canGoBack,canGoForword,title，见名之意。<br>但有个属性target有些疑惑，咱打开android源码看看：</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> WritableMap <span class="title">createWebViewEvent</span><span class="params">(WebView webView, String url)</span> </span>&#123;</span><br><span class="line">  WritableMap event = Arguments.createMap();</span><br><span class="line">  event.putDouble(<span class="string">"target"</span>, webView.getId());</span><br><span class="line">  <span class="comment">// Don't use webView.getUrl() here, the URL isn't updated to the new value yet in callbacks</span></span><br><span class="line">  <span class="comment">// like onPageFinished</span></span><br><span class="line">  event.putString(<span class="string">"url"</span>, url);</span><br><span class="line">  event.putBoolean(<span class="string">"loading"</span>, !mLastLoadFailed &amp;&amp; webView.getProgress() != <span class="number">100</span>);</span><br><span class="line">  event.putString(<span class="string">"title"</span>, webView.getTitle());</span><br><span class="line">  event.putBoolean(<span class="string">"canGoBack"</span>, webView.canGoBack());</span><br><span class="line">  event.putBoolean(<span class="string">"canGoForward"</span>, webView.canGoForward());</span><br><span class="line">  <span class="keyword">return</span> event;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>target也就是原生WebView的getId()返回值，也就是android中布局文件里的id值，这里算是唯一标识吧应该。</p>
+<h6 id="使用高版本的属性方法–onMessage-event"><a href="#使用高版本的属性方法–onMessage-event" class="headerlink" title="使用高版本的属性方法–onMessage(event)"></a>使用高版本的属性方法–onMessage(event)</h6><p>这个函数在RN官方API中有介绍，专门用来进行网页端与RN端的通信，这里来实现下。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">onMessage=&#123;<span class="keyword">this</span>.onMessage&#125;</span><br><span class="line">  onMessage(event)&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'onMessage-&gt;event.nativeEvent.data:'</span>);</span><br><span class="line">      <span class="built_in">console</span>.log(event.nativeEvent.data);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>在html代码中通过点击方式发送data:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">"javascript"</span>&gt;</span></span><br><span class="line"><span class="javascript">	$(<span class="string">'#btn_msg1'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">		<span class="built_in">window</span>.postMessage(<span class="string">'网页端点击了按钮啦。。。'</span>)</span></span><br><span class="line">	&#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1948083-b60f3c9be5dc4eb4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="onMessage"></p>
+<h6 id="WebView-Javascript-Bridge"><a href="#WebView-Javascript-Bridge" class="headerlink" title="WebView Javascript Bridge"></a>WebView Javascript Bridge</h6><p>该三方库兼容低版本实现网页端发送message,并可实现rn向html代码交互。<br>参看：<a href="https://github.com/alinz/react-native-webview-bridge" target="_blank" rel="noopener">https://github.com/alinz/react-native-webview-bridge</a><br>实现起来，稍微复杂些，安卓IOS端都需引入依赖。<br>其通过注入js的方式，在html中注入 WebViewBridge.onMessage函数，实现了html与RN之间的双向交互，功能强大，具体看其api。</p>
+<h4 id="在Android原生代码中对ReactNative-WebView控件进行初始设置"><a href="#在Android原生代码中对ReactNative-WebView控件进行初始设置" class="headerlink" title="在Android原生代码中对ReactNative WebView控件进行初始设置"></a>在Android原生代码中对ReactNative WebView控件进行初始设置</h4><p>翻开Android端桥接WebView的源码ReactWebViewManager，发现其有两个构造参数：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">ReactWebViewManager</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    mWebViewConfig = <span class="keyword">new</span> WebViewConfig() &#123;</span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configWebView</span><span class="params">(WebView webView)</span> </span>&#123;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">ReactWebViewManager</span><span class="params">(WebViewConfig webViewConfig)</span> </span>&#123;</span><br><span class="line">    mWebViewConfig = webViewConfig;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> WebView <span class="title">createViewInstance</span><span class="params">(ThemedReactContext reactContext)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    mWebViewConfig.configWebView(webView);</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="keyword">return</span> webView;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>再打开WebViewConfig接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">WebViewConfig</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">configWebView</span><span class="params">(WebView webView)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里就可以看出，其实咱可以传入个WebViewConfig实例,通过webView.getSettings()对WebView进行Setting，下面简单实现下。<br>由于MainReactPackage.java里已经将ReactWebViewManager进行无参实例化，并加入集合通过createViewManagers()返回。所以我觉得可通过继承的方式重写createViewManagers()返回值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CusMainReactPackage</span> <span class="keyword">extends</span> <span class="title">MainReactPackage</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> WebViewConfig webViewConfig = <span class="keyword">new</span> WebViewConfig() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configWebView</span><span class="params">(WebView webView)</span> </span>&#123;</span><br><span class="line">            WebSettings settings = webView.getSettings();</span><br><span class="line">            <span class="comment">//do settings...</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;ViewManager&gt; <span class="title">createViewManagers</span><span class="params">(ReactApplicationContext reactContext)</span> </span>&#123;</span><br><span class="line">        List&lt;ViewManager&gt; viewManagers = handleRepleaceRTCWebView(<span class="keyword">super</span>.createViewManagers(reactContext));</span><br><span class="line">        <span class="keyword">return</span> viewManagers;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 替换viewManager中默认的RCTWebViewManager</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> List&lt;ViewManager&gt; <span class="title">handleRepleaceRTCWebView</span><span class="params">(List&lt;ViewManager&gt; viewManagers)</span> </span>&#123;</span><br><span class="line">        List&lt;ViewManager&gt; _viewManagers = <span class="keyword">new</span> ArrayList&lt;&gt;(viewManagers);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; _viewManagers.size(); i++)</span><br><span class="line">            <span class="keyword">if</span> (_viewManagers.get(i).getName().equals(<span class="string">"RCTWebView"</span>)) &#123;</span><br><span class="line">                _viewManagers.set(i, <span class="keyword">new</span> ReactWebViewManager(webViewConfig));</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">return</span> _viewManagers;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>之后进行相应调用修改即可。</p>
+<h4 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h4><p>以上都是结合ReactNative Andorid端对WebView组件进行学习研究的总结，由于对RN接触不久，所以肯定有些理解错误的地方，望指正建议，谢谢！</p>
+<h4 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h4><ul>
+<li><a href="http://reactnative.cn/docs/0.42/webview.html" target="_blank" rel="noopener">http://reactnative.cn/docs/0.42/webview.html</a></li>
+<li><a href="http://facebook.github.io/react-native/releases/0.25/docs/webview.html#webview" target="_blank" rel="noopener">http://facebook.github.io/react-native/releases/0.25/docs/webview.html#webview</a></li>
+<li><a href="https://github.com/alinz/react-native-webview-bridge" target="_blank" rel="noopener">https://github.com/alinz/react-native-webview-bridge</a></li>
+<li><a href="http://blog.csdn.net/codetomylaw/article/details/52490378" target="_blank" rel="noopener">http://blog.csdn.net/codetomylaw/article/details/52490378</a></li>
+<li><a href="https://developer.android.com/reference/android/webkit/WebView.html" target="_blank" rel="noopener">https://developer.android.com/reference/android/webkit/WebView.html</a></li>
+</ul>
+
+  	</div>
+	  
+	  <div class="article-tags tags">
+      
+        <a href="/tags/Android/">Android</a>
+      
+        <a href="/tags/ReactNative/">ReactNative</a>
+      
+	  </div>
+    
+		
+	
+		<div class="art-item-footer">
+				
+					<span class="art-item-left"><i class="icon icon-chevron-thin-left"></i>prev：<a href="/2018/03/22/201908151029/" rel="prev"  title="简单破解一款安卓软件">
+						简单破解一款安卓软件 
+					</a></span>
+				
+				
+					<span class="art-item-right">next：<a href="/2017/09/11/201908151303/" rel="next"  title="JS箭头函数与传统JavaScript函数使用">
+						JS箭头函数与传统JavaScript函数使用
+					</a><i class="icon icon-chevron-thin-right"></i></span>
+				
+		</div>
+	
+	</section>
+	
+</article>
+<script>
+	window.subData = {
+		title: '浅析React-Native WebView,实现RN代码与Html的简单交互',
+		tools: true
+	}
+</script>
+
+      </div>
+      <aside class='l_side'>
+        
+  <section class='m_widget about'>
+
+<img class='avatar waves-image' src='/images/avatar.png' />
+
+<div class='header'>jiaming.zhu</div>
+<div class='content'>
+<div class='desc'>Life is the art of drawing without an eraser.</div>
+</div>
+</section>
+
+  <section class='m_widget links'>
+<div class='header'>Links</div>
+<div class='content'>
+    <ul class="entry">
+    
+        <li><a class="flat-box" target="_blank" href="https://www.baidu.com">
+            <div class='name'>Baidu</div>
+        </a></li>
+    
+    </ul>
+</div>
+</section>
+
+  <section class='m_widget categories'>
+<div class='header'>Categories</div>
+<div class='content'>
+    
+    <ul class="entry">
+    
+        <li><a class="flat-box" href="/categories/devTools/"><div class='name'>devTools</div><div class='badget'>1</div></a></li>
+    
+        <li><a class="flat-box" href="/categories/个人项目/"><div class='name'>个人项目</div><div class='badget'>2</div></a></li>
+    
+        <li><a class="flat-box" href="/categories/技术/"><div class='name'>技术</div><div class='badget'>5</div></a></li>
+    
+        <li><a class="flat-box" href="/categories/问题与解决/"><div class='name'>问题与解决</div><div class='badget'>1</div></a></li>
+    
+        <li><a class="flat-box" href="/categories/阅读/"><div class='name'>阅读</div><div class='badget'>1</div></a></li>
+    
+    </ul>
+    
+</div>
+</section>
+
+  
+<div class="m_widget tagcloud">
+    <div class="header">Tags</div>
+    <div class='content'>
+        <a href="/tags/Android/" style="font-size: 20px; color: #000">Android</a> <a href="/tags/AndroidStudio/" style="font-size: 16px; color: #555">AndroidStudio</a> <a href="/tags/Gradle/" style="font-size: 16px; color: #555">Gradle</a> <a href="/tags/JavaScript/" style="font-size: 14px; color: #808080">JavaScript</a> <a href="/tags/Mac/" style="font-size: 14px; color: #808080">Mac</a> <a href="/tags/Note/" style="font-size: 14px; color: #808080">Note</a> <a href="/tags/ReactNative/" style="font-size: 18px; color: #2b2b2b">ReactNative</a> <a href="/tags/WebView/" style="font-size: 14px; color: #808080">WebView</a> <a href="/tags/WiFi/" style="font-size: 14px; color: #808080">WiFi</a> <a href="/tags/android/" style="font-size: 14px; color: #808080">android</a> <a href="/tags/性能优化/" style="font-size: 14px; color: #808080">性能优化</a> <a href="/tags/逆向/" style="font-size: 14px; color: #808080">逆向</a>
+    </div>
+</div>
+
+
+
+      </aside>
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+  </div>
+  <footer id="footer" class="clearfix">
+
+	<div class="social-wrapper">
+  	
+      
+        <a href="https://github.com/zhujiaming" class="social github"
+          target="_blank" rel="external">
+          <span class="icon icon-github"></span>
+        </a>
+      
+    
+  </div>
+  
+  <div>Theme <a href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow</a> designed by <a href="http://keyin.me/" target="_blank">Kevin Tan</a>.</div>
+  
+</footer>
+
+
+  <script>setLoadingBarProgress(80);</script>
+  
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src='//cdn.bootcss.com/node-waves/0.7.5/waves.min.js'></script>
+<script src="//cdn.bootcss.com/scrollReveal.js/3.3.2/scrollreveal.min.js"></script>
+<script src="/js/jquery.fitvids.js"></script>
+<script>
+	var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+	var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+	var ALGOLIA_API_KEY = "";
+	var ALGOLIA_APP_ID = "";
+	var ALGOLIA_INDEX_NAME = "";
+  var AZURE_SERVICE_NAME = "";
+  var AZURE_INDEX_NAME = "";
+  var AZURE_QUERY_KEY = "";
+  var BAIDU_API_ID = "";
+  var SEARCH_SERVICE = "hexo";
+  var ROOT = "/"||"/";
+  if(!ROOT.endsWith('/'))ROOT += '/';
+</script>
+<script src="/js/search.js"></script>
+<script src="/js/app.js"></script>
+
+
+  <script>setLoadingBarProgress(100);</script>
+</body>
+</html>
