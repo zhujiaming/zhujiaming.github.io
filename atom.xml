@@ -88,9 +88,9 @@
       <category term="android" scheme="http://yoursite.com/categories/android/"/>
     
     
-      <category term="webview" scheme="http://yoursite.com/tags/webview/"/>
-    
       <category term="android" scheme="http://yoursite.com/tags/android/"/>
+    
+      <category term="webview" scheme="http://yoursite.com/tags/webview/"/>
     
   </entry>
   
