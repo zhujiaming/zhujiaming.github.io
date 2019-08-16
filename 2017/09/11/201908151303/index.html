@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,18 +25,28 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS箭头函数与传统JavaScript函数使用">
 <meta name="twitter:description" content="箭头函数的特性： 对this的关联。箭头函数内置的this的值，取决于箭头函数在哪定义，而非箭头函数执行的上下文环境。 new不可用。箭头函数内不能使用new关键字来实例化对象，否则报错。 没有arguments对象。不能通过arguments对象访问传入参数，只能使用显式命名或其他ES6新特性来完成。 this不可变。函数内置的this不可变，在函数体内整个执行环境中未常量。  有这些这些差异的">
-    
+
   <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
   <link href="//cdn.bootcss.com/node-waves/0.7.5/waves.min.css" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
   <script>
     function setLoadingBarProgress(num) {
-      document.getElementById('loading-bar').style.width=num+"%";
+      document.getElementById('loading-bar').style.width = num + "%";
     }
   </script>
-</head>
-</html>
+
+  <!-- 百度统计 -->
+  <script>
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?2be21791b69e8369fb33252e9082d5d5";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</head></html>
 <body>
   <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
