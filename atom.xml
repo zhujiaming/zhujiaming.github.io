@@ -255,9 +255,9 @@
       <category term="技术" scheme="http://zhujm.top/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="android" scheme="http://zhujm.top/tags/android/"/>
-    
       <category term="WebView" scheme="http://zhujm.top/tags/WebView/"/>
+    
+      <category term="android" scheme="http://zhujm.top/tags/android/"/>
     
   </entry>
   
