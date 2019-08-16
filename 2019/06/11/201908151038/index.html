@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
-  <title>Tag: 逆向 | jiaming</title>
+  <title>AndriodStudio打开项目长时间无响应解决 | jiaming</title>
   <meta name="description" content="这里什么都没有...">
   <meta name="keywords" content>
   <meta name="HandheldFriendly" content="True">
@@ -12,16 +12,18 @@
   <link rel="shortcut icon" href="/">
   <link rel="alternate" href="/atom.xml" title="jiaming">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这里什么都没有...">
-<meta property="og:type" content="website">
-<meta property="og:title" content="jiaming">
-<meta property="og:url" content="http://zhujm.top/tags/逆向/index.html">
+  <meta name="description" content="首次安装 AndroidStudio 后，基本都会经历一个漫长的 Gradle 构建工具下载过程，避免这个漫长的等待，那就只有手动下载。">
+<meta name="keywords" content="AndroidStudio,Gradle">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AndriodStudio打开项目长时间无响应解决">
+<meta property="og:url" content="http://zhujm.top/2019/06/11/201908151038/index.html">
 <meta property="og:site_name" content="jiaming">
-<meta property="og:description" content="这里什么都没有...">
+<meta property="og:description" content="首次安装 AndroidStudio 后，基本都会经历一个漫长的 Gradle 构建工具下载过程，避免这个漫长的等待，那就只有手动下载。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-08-16T01:41:34.451Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="jiaming">
-<meta name="twitter:description" content="这里什么都没有...">
+<meta name="twitter:title" content="AndriodStudio打开项目长时间无响应解决">
+<meta name="twitter:description" content="首次安装 AndroidStudio 后，基本都会经历一个漫长的 Gradle 构建工具下载过程，避免这个漫长的等待，那就只有手动下载。">
     
   <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
@@ -122,57 +124,83 @@
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        
-  <script>
-    window.subData= { title:'Tag : 逆向'}
-  </script>
-
-<section class="post-list">
+        <article id="post-201908151038"
+  class="post white-box article-type-post"
+  itemscope itemprop="blogPost">
+	<section class='meta'>
+	<h2 class="title">
+  	<a href="/2019/06/11/201908151038/">
+    	AndriodStudio打开项目长时间无响应解决
+    </a>
+  </h2>
+	<time>
+	  6月 11, 2019
+	</time>
 	
-    <div class='post-wrapper'>
-      <article class="post reveal">
-  <section class="meta">
-    
-    <h2 class="title">
-      <a href="/2018/03/22/201908151029/">
-        简单破解一款安卓软件
-      </a>
-    </h2>
-    
-    <time>
-      3月 22, 2018
-    </time>
-		
     
     <div class='cats'>
-        <a href="/categories/技术/">技术</a>
+        <a href="/categories/devTools/">devTools</a>
     </div>
 
-  </section>
-  <section class="article typo">
-	  <h5 id="下载apktool工具"><a href="#下载apktool工具" class="headerlink" title="下载apktool工具"></a>下载apktool工具</h5><p>从官方渠道下载→<a href="https://ibotpeaches.github.io/Apktool/" target="_blank" rel="noopener">官方下载</a></p>
+	</section>
+	
+		<section class="toc-wrapper"><ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#手动下载-Gradle-构建工具并设置步骤："><span class="toc-number">1.</span> <span class="toc-text">手动下载 Gradle 构建工具并设置步骤：</span></a></li></ol></section>
+	
+	<section class="article typo">
+  	<div class="article-entry" itemprop="articleBody">
+    	<blockquote>
+<p>首次安装 AndroidStudio 后，基本都会经历一个漫长的 Gradle 构建工具下载过程，避免这个漫长的等待，那就只有手动下载。</p>
+</blockquote>
+<a id="more"></a>
+<h6 id="手动下载-Gradle-构建工具并设置步骤："><a href="#手动下载-Gradle-构建工具并设置步骤：" class="headerlink" title="手动下载 Gradle 构建工具并设置步骤："></a>手动下载 Gradle 构建工具并设置步骤：</h6><ol>
+<li><p>打开 项目目录/gradle/wrapper/gradle-wrapper.properties</p>
+</li>
+<li><p>查看 distributionUrl 的值的 gradle 版本号（如：gradle-2.4-all.zip），便获得了该项目所需 Gradle 构建工具版本</p>
+</li>
+<li><p><a href="https://pan.baidu.com/s/1pLEkm4F?utm_source=androiddevtools.cn&utm_medium=website#list/path=%2F" target="_blank" rel="noopener">点击这里</a>或<a href="services.gradle.org/distributions/">官方渠道</a><br>选择相应的版本下载，下载速度相比 as 肯定快不少</p>
+</li>
+<li><p>下载完成，打开 user 目录下的一个/.gradle 文件夹(windows 与 mac 相似，都是用户目录下，并且需要设置显示隐藏文件，具体百度即可，如果没有./gradle，运行一遍 AndroidStudio，跑个项目后 kill AndroidStudio 便有了)</p>
+</li>
+<li><p>找到/.gradle/wrapper/dist/ 目录下肯定会有 gradle-x.x-all 的文件夹，且对应项目所需的版本号（没有则把该项目导入 AndroidStudio，然后在 as 下载过程中强制结束 as，即可找到该文件夹）</p>
+</li>
+<li><p>把上面下载好的 jar 包丢进去，重新跑 AndroidStudio，这时，便正常啦。</p>
+</li>
+</ol>
 
-    
-	  <div class="readmore">
-      <a href="/2018/03/22/201908151029/">Read More</a>
-    </div>
-    
-    
-    
-	  <div class="full-width auto-padding tags">
+  	</div>
+	  
+	  <div class="article-tags tags">
       
-        <a href="/tags/android/">android</a>
+        <a href="/tags/AndroidStudio/">AndroidStudio</a>
       
-        <a href="/tags/逆向/">逆向</a>
+        <a href="/tags/Gradle/">Gradle</a>
       
 	  </div>
     
-  </section>
+		
+	
+		<div class="art-item-footer">
+				
+					<span class="art-item-left"><i class="icon icon-chevron-thin-left"></i>prev：<a href="/2019/08/16/201908160914/" rel="prev"  title="🔥欢迎下载体验「小号」应用">
+						🔥欢迎下载体验「小号」应用 
+					</a></span>
+				
+				
+					<span class="art-item-right">next：<a href="/2018/08/15/201908151343/" rel="next"  title="风险投资的过程——《浪潮之巅》">
+						风险投资的过程——《浪潮之巅》
+					</a><i class="icon icon-chevron-thin-right"></i></span>
+				
+		</div>
+	
+	</section>
+	
 </article>
-    </div>
-  
-</section>
-
+<script>
+	window.subData = {
+		title: 'AndriodStudio打开项目长时间无响应解决',
+		tools: true
+	}
+</script>
 
       </div>
       <aside class='l_side'>
