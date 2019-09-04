@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhujm.top/"/>
-  <updated>2019-08-16T02:00:06.541Z</updated>
+  <updated>2019-09-04T10:42:56.600Z</updated>
   <id>http://zhujm.top/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Electron针对窗口间通讯的一种实现</title>
+    <link href="http://zhujm.top/2019/09/04/201909041838/"/>
+    <id>http://zhujm.top/2019/09/04/201909041838/</id>
+    <published>2019-09-04T10:38:21.000Z</published>
+    <updated>2019-09-04T10:42:56.600Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="问题"><a href="#问题" class="headerlink" title="问题:"></a>问题:</h4><blockquote><p> electron 窗口渲染的内容逻辑运行在renderer进程，窗口管理与应用管理逻辑运行在main进程，窗口之间的渲染内容的通讯无法直接进行，需要通过main进行中转。</p></blockquote><a id="more"></a><h4 id="源码"><a href="#源码" class="headerlink" title="源码:"></a>源码:</h4><p>待上传</p><h4 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h4><p>A窗&lt;—&gt;main&lt;—&gt;B窗口</p><h4 id="使用"><a href="#使用" class="headerlink" title="使用:"></a>使用:</h4><ol><li>自定义通讯唯一 id:connid, 窗口唯一 tag:winTag</li></ol><ul><li>通讯唯一id:用于搭建两个窗口通讯的id，a发送消息给b需要使用该id作为key，同理b发送给a；</li><li>窗口唯一tag:用于标识窗口的唯一值，作为参数发送；</li></ul><ol start="2"><li>main进程中初始化 WinConnBradge</li></ol><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> connid = <span class="string">'1234'</span>;<span class="comment">//建议写在./ts_src/main/winconnbradge/ids中，便于维护和使用</span></span><br><span class="line"><span class="keyword">const</span> winTagA = <span class="string">'winTagA'</span>;</span><br><span class="line"><span class="keyword">const</span> winTagB = <span class="string">'winTagB'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">this</span>.newwinBradge = <span class="keyword">new</span> WinConnBradge();</span><br><span class="line"><span class="keyword">this</span>.newwinBradge.bind(WinA, winTagA , WinB , winTagB , connid );<span class="comment">//bind两个窗口</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">this</span>.newwinBradge.unBind();<span class="comment">//需要在通讯中断（某个窗口关闭）后及时取消bind</span></span><br></pre></td></tr></table></figure><ol start="3"><li>renderer进程逻辑中初始化两个WinConnBridgeHandle</li></ol><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> connid = <span class="string">'1234'</span>;</span><br><span class="line"><span class="keyword">const</span> targetWinTag = <span class="string">'xxx'</span>;<span class="comment">//目标的window的Tag</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> newWinBradge = <span class="keyword">new</span> WinConnBridgeHandle(connid ,targetWinTag);</span><br></pre></td></tr></table></figure><ol start="4"><li>renderer进程中发送消息与注册监听另一个窗口的消息</li></ol><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">newWinBradge.on(<span class="string">'callback'</span>,(event,args)=&gt;&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'接收到来自另一个窗口的回复'</span>,args);</span><br><span class="line">    <span class="comment">// newWinBradge.send('callback_reply','reply message');</span></span><br><span class="line">&#125;)</span><br><span class="line">newWinBradge.send(<span class="string">'sendToNewWin'</span>,<span class="string">'send message to newwin'</span>);</span><br></pre></td></tr></table></figure><h4 id="TODO"><a href="#TODO" class="headerlink" title="TODO:"></a>TODO:</h4><ul><li>效率</li><li>1对多通讯</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot; title=&quot;问题:&quot;&gt;&lt;/a&gt;问题:&lt;/h4&gt;&lt;blockquote&gt;
+&lt;p&gt; electron 窗口渲染的内容逻辑运行在renderer进程，窗口管理与应用管理逻辑运行在main进程，窗口之间的渲染内容的通讯无法直接进行，需要通过main进行中转。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://zhujm.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="Electron" scheme="http://zhujm.top/tags/Electron/"/>
+    
+  </entry>
   
   <entry>
     <title>🔥欢迎下载体验「小号」应用</title>
