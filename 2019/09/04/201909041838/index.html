@@ -20,7 +20,7 @@
 <meta property="og:site_name" content="jiaming">
 <meta property="og:description" content="问题:  electron 窗口渲染的内容逻辑运行在renderer进程，窗口管理与应用管理逻辑运行在main进程，窗口之间的渲染内容的通讯无法直接进行，需要通过main进行中转。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-04T10:42:56.600Z">
+<meta property="og:updated_time" content="2019-10-14T02:25:22.531Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Electron针对窗口间通讯的一种实现">
 <meta name="twitter:description" content="问题:  electron 窗口渲染的内容逻辑运行在renderer进程，窗口管理与应用管理逻辑运行在main进程，窗口之间的渲染内容的通讯无法直接进行，需要通过main进行中转。">
@@ -161,7 +161,7 @@
 <p> electron 窗口渲染的内容逻辑运行在renderer进程，窗口管理与应用管理逻辑运行在main进程，窗口之间的渲染内容的通讯无法直接进行，需要通过main进行中转。</p>
 </blockquote>
 <a id="more"></a>
-<h4 id="源码"><a href="#源码" class="headerlink" title="源码:"></a>源码:</h4><p>待上传</p>
+<h4 id="源码"><a href="#源码" class="headerlink" title="源码:"></a>源码:</h4><p><a href="https://github.com/zhujiaming/electron-wpc" target="_blank" rel="noopener">https://github.com/zhujiaming/electron-wpc</a></p>
 <h4 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h4><p>A窗&lt;—&gt;main&lt;—&gt;B窗口</p>
 <h4 id="使用"><a href="#使用" class="headerlink" title="使用:"></a>使用:</h4><ol>
 <li>自定义通讯唯一 id:connid, 窗口唯一 tag:winTag</li>
