@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>T9应用设置</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/settings.css">
+</head>
+<body class="bg-black text-white h-screen flex flex-col overflow-hidden">
+    <!-- iOS状态栏 -->
+    <div class="ios-status-bar flex justify-between items-center px-5 py-1 text-sm">
+        <div>9:41</div>
+        <div class="flex space-x-1">
+            <i class="fas fa-signal"></i>
+            <i class="fas fa-wifi"></i>
+            <i class="fas fa-battery-full"></i>
+        </div>
+    </div>
+
+    <!-- 设置页面标题 -->
+    <div class="settings-header flex items-center justify-between px-4 py-3 border-b border-gray-800">
+        <button id="back-button" class="text-blue-400">
+            <i class="fas fa-chevron-left mr-1"></i>返回
+        </button>
+        <h1 class="text-lg font-medium">应用设置</h1>
+        <div class="w-16"></div> <!-- 占位元素，保持标题居中 -->
+    </div>
+
+    <!-- 设置选项列表 -->
+    <div class="settings-list flex-grow overflow-y-auto">
+        <div class="p-4">
+            <div class="setting-group mb-6">
+                <h2 class="text-gray-400 text-sm mb-2">显示设置</h2>
+                <div class="setting-item flex justify-between items-center p-3 bg-gray-900 rounded-lg mb-2">
+                    <div>
+                        <div class="text-white">深色模式</div>
+                        <div class="text-gray-500 text-xs">启用后将使用深色主题</div>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="dark-mode-toggle" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div class="setting-item flex justify-between items-center p-3 bg-gray-900 rounded-lg">
+                    <div>
+                        <div class="text-white">显示农历</div>
+                        <div class="text-gray-500 text-xs">在日期区域显示农历日期</div>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="lunar-toggle" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="setting-group mb-6">
+                <h2 class="text-gray-400 text-sm mb-2">应用设置</h2>
+                <div class="setting-item flex justify-between items-center p-3 bg-gray-900 rounded-lg mb-2">
+                    <div>
+                        <div class="text-white">最近应用数量</div>
+                        <div class="text-gray-500 text-xs">显示的最近打开应用数量</div>
+                    </div>
+                    <select id="recent-apps-count" class="bg-gray-800 text-white rounded px-2 py-1">
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5" selected>5</option>
+                    </select>
+                </div>
+                <div class="setting-item flex justify-between items-center p-3 bg-gray-900 rounded-lg">
+                    <div>
+                        <div class="text-white">应用排序方式</div>
+                        <div class="text-gray-500 text-xs">应用列表的排序方式</div>
+                    </div>
+                    <select id="app-sort-method" class="bg-gray-800 text-white rounded px-2 py-1">
+                        <option value="name" selected>按名称</option>
+                        <option value="recent">按最近使用</option>
+                        <option value="frequency">按使用频率</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="setting-group">
+                <h2 class="text-gray-400 text-sm mb-2">关于</h2>
+                <div class="setting-item p-3 bg-gray-900 rounded-lg">
+                    <div class="text-white mb-1">T9应用搜索</div>
+                    <div class="text-gray-500 text-xs">版本: 1.0.0</div>
+                    <div class="text-gray-500 text-xs mt-2">© 2023 T9应用搜索团队</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/settings.js"></script>
+</body>
+</html>
