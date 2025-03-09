@@ -181,8 +181,20 @@ function setupKeyboardListeners() {
         }
     });
 
-    // 收起键盘按钮监听
-    document.getElementById('toggle-keyboard-btn').addEventListener('click', () => {
+    // 功能按钮监听
+    document.getElementById('close-btn').addEventListener('click', () => {
+        showToast('关闭应用');
+    });
+    
+    document.getElementById('settings-btn').addEventListener('click', () => {
+        showToast('打开设置');
+    });
+    
+    document.getElementById('clear-btn').addEventListener('click', () => {
+        showToast('清空输入');
+    });
+    
+    document.getElementById('keyboard-btn').addEventListener('click', () => {
         toggleKeyboard();
     });
 }
@@ -190,19 +202,15 @@ function setupKeyboardListeners() {
 // 切换键盘显示/隐藏
 function toggleKeyboard() {
     const keyboardContainer = document.querySelector('.t9-keyboard-container');
-    const toggleBtn = document.getElementById('toggle-keyboard-btn');
-    const toggleIcon = toggleBtn.querySelector('i');
     
     if (keyboardContainer.style.display === 'none') {
         // 显示键盘
         keyboardContainer.style.display = 'block';
-        toggleIcon.classList.remove('fa-chevron-up');
-        toggleIcon.classList.add('fa-chevron-down');
+        showToast('显示键盘');
     } else {
         // 隐藏键盘
         keyboardContainer.style.display = 'none';
-        toggleIcon.classList.remove('fa-chevron-down');
-        toggleIcon.classList.add('fa-chevron-up');
+        showToast('隐藏键盘');
     }
 }
 

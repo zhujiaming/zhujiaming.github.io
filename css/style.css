@@ -139,3 +139,17 @@ body {
 .t9-key:active {
     background-color: rgba(255, 255, 255, 0.2);
 }
+
+/* 功能按钮样式 */
+.function-buttons-container {
+    background-color: rgba(20, 20, 20, 0.8);
+}
+
+.function-btn {
+    border-radius: 12px;
+    transition: all 0.2s;
+}
+
+.function-btn:active {
+    background-color: rgba(255, 255, 255, 0.2);
+}
